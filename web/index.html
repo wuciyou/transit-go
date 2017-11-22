@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min.js"></script>
+<script type="text/javascript" src="http://www.33m.com/Application/Shop/View/ecshopstyle/Public/Common/index/js/jquery-1.9.1.min.js"></script>
+<meta charset="UTF-8">
+<title>Chat Web Example</title>
+</head>
+
+<body>
+<h1>Chat - Web Example</h1>
+<form onSubmit='sock.send(document.getElementById("input").value); return false;'>
+Input text: <input id="input" focus="true" />
+<input type="submit" disabled="true" id="send" value="Send" />
+</form>
+<br/>
+Messages from server:</br>
+<textarea cols=80 rows=20 id="output">
+</textarea>
+<br/>
+status: <span id="status">connecting...</span>
+
+<script type="text/javascript">
+
+if (!window.location.origin) { // Some browsers (mainly IE) do not have this property, so we need to build it manually...
+  window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
+}
+
+var sock = new SockJS(window.location.origin+'/wc')
+
+sock.onopen = function() {
+	// console.log('connection open');
+	document.getElementById("status").innerHTML = "connected";
+	document.getElementById("send").disabled=false;
+	// 获取连接密钥
+	// 这步一般是放在服务器来做，这里为了方便就放在浏览器来处理
+	$.get('/key',function(key){
+		sock.send(key);
+	})
+};
+
+sock.onmessage = function(e) {
+	document.getElementById("output").value += e.data +"\n";
+};
+
+sock.onclose = function() {
+	console.log('connection closed');
+	document.getElementById("status").innerHTML = "disconnected";
+	document.getElementById("send").disabled=true;
+};
+
+	
+</script>
+
+</body>
+</html>
