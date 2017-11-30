@@ -1,0 +1,23 @@
+{
+	"ImportPath": "github.com/wuciyou/transit-go",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "git.ygwei.com/service/dogo",
+			"Rev": "8f4955e1b5407c048af0222afc7ec9c585e56d1f"
+		},
+		{
+			"ImportPath": "git.ygwei.com/service/dogo/config",
+			"Rev": "8f4955e1b5407c048af0222afc7ec9c585e56d1f"
+		},
+		{
+			"ImportPath": "github.com/gorilla/websocket",
+			"Rev": "ab5b3a61f5b6aa323d66ece457334396c4ccdd03"
+		},
+		{
+			"ImportPath": "gopkg.in/igm/sockjs-go.v2/sockjs",
+			"Rev": "d276e9ffe5cc5c271b81198cc77a2adf6c4482d2"
+		}
+	]
+}

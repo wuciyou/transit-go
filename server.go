@@ -12,7 +12,7 @@ import (
 var auth *authoirty
 var transitChan *transit
 
-func main() {
+func mains() {
 
 	host := flag.String("host", "", "listen host address")
 	port := flag.Int("port", 8549, "listen posrt")
