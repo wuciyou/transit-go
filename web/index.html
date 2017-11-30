@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min.js"></script>
+ <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min.js"></script>
 <script type="text/javascript" src="http://www.33m.com/Application/Shop/View/ecshopstyle/Public/Common/index/js/jquery-1.9.1.min.js"></script>
 <meta charset="UTF-8">
 <title>Chat Web Example</title>
@@ -25,8 +25,10 @@ status: <span id="status">connecting...</span>
 if (!window.location.origin) { // Some browsers (mainly IE) do not have this property, so we need to build it manually...
   window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
 }
+var hosts = window.location.origin;
+hosts = "http://106.14.155.190:8549/ws";
 
-var sock = new SockJS(window.location.origin+'/wc')
+var sock = new SockJS(hosts)
 
 sock.onopen = function() {
 	// console.log('connection open');
@@ -49,7 +51,30 @@ sock.onclose = function() {
 	document.getElementById("send").disabled=true;
 };
 
-	
+
+
+
+
+// 创建一个Socket实例
+// 	var socket = new WebSocket(hosts = "ws://106.14.155.190:8549/ws");
+//
+// 	// 打开Socket
+// 	socket.onopen = function(event) {
+//
+//         // 发送一个初始化消息
+//         socket.send('I am the client and I\'m listening!');
+//
+//         // 监听消息
+//         socket.onmessage = function (event) {
+//             console.log('Client received a message', event);
+//         };
+//
+//         // 监听Socket的关闭
+//         socket.onclose = function (event) {
+//             console.log('Client notified socket has closed', event);
+//         }
+//     }
+
 </script>
 
 </body>
